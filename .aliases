@@ -19,6 +19,7 @@ alias gl='git log --oneline'
 alias gst='git stash '
 alias gsl='git stash list'
 alias gsp='git stash pop'
+alias gup='git add . && git commit --amend --no-edit && git push --force'
 
 # Easier navigation: .., ..., ...., ..... and ~ 
 alias ..="cd .."
@@ -35,6 +36,7 @@ alias trf='terraform'
 alias ta='terraform apply'
 alias td='terraform destroy'
 alias ti='terraform init'
+alias tp='terraform plan'
 
 # custom ls
 alias ls='ls --color=auto'
@@ -66,7 +68,7 @@ alias cserver='git clone https://github.com/virajbhartiya/Server-Boilerplate.git
 alias sudo='sudo '
 
 # get macOS software updates
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup;sudo npm install npm -g;sudo npm update -g'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
