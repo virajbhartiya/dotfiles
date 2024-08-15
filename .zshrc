@@ -104,12 +104,6 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -127,63 +121,10 @@ esac
 #PSQL
 export PATH="/Applications/Postgres.app/Contents/Versions/16/bin:$PATH"
 
+for file in ~/.{path,exports,aliases,functions,extra}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
 
-#CUSTOM ALIASES
-
-# GIT aliases
-alias gs='git status '
-alias ga='git add .'
-alias gb='git branch ' 
-alias gc='git clone '
-alias gcom='git commit -m '
-alias gco='git checkout '
-alias gp='git pull'
-alias gpr='git pull --rebase'
-alias gpu='git push -u origin '
-alias gl='git log --oneline'
-alias gst='git stash '
-alias gsl='git stash list'
-alias gsp='git stash pop'
-
-# Path
-alias ..='cd ..'
-
-#Xcode
-alias ios='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-
-#terraform
-alias trf='terraform'
-alias ta='terraform apply'
-alias td='terraform destroy'
-alias ti='terraform init'
-
-# custom ls
-alias ls='ls --color=auto'
-alias ll='ls -la'
-
-# Misc
-alias c='clear'
-alias h='history'
-alias dev='cd ~/Developer'
-alias path='echo -e ${PATH//:/\\n}'
-alias wget='wget -c'
-alias cat='bat'
-alias refresh='source ~/.zshrc'
-alias ndev='npm run dev'
-alias nstart='npm start'
-alias nbuild='npm run build'
-alias ozsh='open ~/.zshrc'
-alias szsh='source ~/.zshrc'
-alias python='python3'
-alias shadcn='npx shadcn-ui@latest add'
-alias cshad='git clone https://github.com/virajbhartiya/shadcn-boilerplate.git && rm -rf ./shadcn-boilerplate/.git'
-alias cserver='git clone https://github.com/virajbhartiya/Server-Boilerplate.git && rm -rf ./Server-Boilerplate/.git'
-
-#CUSTOM FUNCTIONS
-
-function mkcd() {
-  mkdir -p "$@" && cd "$_";
-}
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
