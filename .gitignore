@@ -1,0 +1,24 @@
+# First exclude everything.
+*
+# then re-include all "dotfiles"
+!/.*
+
+# Caches
+/.bash_history
+/.dbus-keyrings/
+/.emacs.d/
+/.gimp-2.8/
+/.git/
+/.gitk
+/.idlerc/
+/.lesshst
+/.saves/
+/.thumbnails/
+/.Trash/
+
+# others
+/.oh-my-zsh
+/.password-store
+/.wakatime.cfg
+/.nvm
+.zsh_history
