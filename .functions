@@ -37,3 +37,8 @@ function o() {
 		open "$@";
 	fi;
 }
+
+# create a new branch and pull from main
+function gnb() { 
+	git checkout -b "$1" && git pull origin main; 
+};
