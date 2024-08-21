@@ -1,3 +1,5 @@
 [user]
 	name = Viraj Bhartiya
 	email = vlbhartiya@gmail.com
+[http]
+	postBuffer = 524288000
