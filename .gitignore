@@ -24,3 +24,5 @@
 .zsh_history
 .zcompdump-Art3mis-5.9
 .DS_Store
+.yarnrc
+.viminfo

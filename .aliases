@@ -96,3 +96,4 @@ alias uptime="uptime | sed 's/.*up \([^,]*\), .*/\1/'"
 alias c='clear'
 alias h='history'
 alias ccd='pwd | pbcopy' # Copy the current directory to the clipboard
+alias c.='code .'
