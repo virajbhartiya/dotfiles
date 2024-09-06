@@ -61,7 +61,7 @@ alias nbuild='npm run build'
 alias python='python3'
 
 # shadcn
-alias shadcn='npx shadcn-ui@latest add'
+alias shadcn='npx shadcn@latest add'
 
 # repo
 alias cshad='git clone https://github.com/virajbhartiya/shadcn-boilerplate.git client && rm -rf ./client/.git'
@@ -93,7 +93,8 @@ alias du='du -sh *'
 alias uptime="uptime | sed 's/.*up \([^,]*\), .*/\1/'"
 
 # Misc
-alias c='clear'
+alias clr='clear'
 alias h='history'
 alias ccd='pwd | pbcopy' # Copy the current directory to the clipboard
-alias c.='code .'
+alias c.='cursor .'
+alias c='cursor'
