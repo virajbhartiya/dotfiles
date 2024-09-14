@@ -26,3 +26,5 @@
 .DS_Store
 .yarnrc
 .viminfo
+.zshenv
+

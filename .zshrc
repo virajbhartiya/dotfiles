@@ -121,7 +121,7 @@ esac
 #PSQL
 export PATH="/Applications/Postgres.app/Contents/Versions/16/bin:$PATH"
 
-for file in ~/.{path,exports,aliases,functions,extra}; do
+for file in ~/.{path,exports,aliases,functions,extra,zshenv}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
