@@ -4,6 +4,9 @@
 # Extend PATH
 export PATH="$PATH:/Users/art3mis/.foundry/bin:/opt/homebrew/bin:/Users/art3mis/go/bin/goimports/bin"
 
+export PATH=$PATH:$(go env GOPATH)/bin
+
+
 # HWLOC-related flags
 export LDFLAGS="-L/usr/local/opt/hwloc/lib"
 export CPPFLAGS="-I/usr/local/opt/hwloc/include"
