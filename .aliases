@@ -47,6 +47,7 @@ alias ll='ls -la'
 
 # path
 alias dev='cd ~/Developer'
+alias protocol='cd ~/Developer/protocol'
 alias path='echo $PATH | tr ":" "\n"' 
 
 alias wget='wget -c'
