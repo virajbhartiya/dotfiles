@@ -5,135 +5,88 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$PATH":"$HOME/.pub-cache/bin:/Users/art3mis/Library/Python/3.9/bin"
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# Theme configuration
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
+# Update configuration
+zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 14
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Pre-compute expensive operations
+export BREW_PREFIX="/opt/homebrew"
+export LLVM_PREFIX="$BREW_PREFIX/opt/llvm"
+export HWLOC_PREFIX="$BREW_PREFIX/opt/hwloc"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Consolidated PATH configuration
+typeset -U path  # Ensure PATH only contains unique entries
+path=(
+  "$BREW_PREFIX/bin"
+  "$BREW_PREFIX/opt/ruby/bin"
+  "/Applications/Postgres.app/Contents/Versions/16/bin"
+  "$HOME/.rvm/bin"
+  "$HOME/.pub-cache/bin"
+  "$HOME/Library/Python/3.9/bin"
+  "/opt/flutter/bin"
+  "$LLVM_PREFIX/bin"
+  "$HWLOC_PREFIX/bin"
+  "$HOME/Library/pnpm"
+  "$HOME/.local/bin"
+  "$HOME/.codeium/windsurf/bin"
+  "$BREW_PREFIX/opt/openjdk@11/bin"
+  "$BREW_PREFIX/opt/openjdk@17/bin"
+  $path
+)
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Plugins (load essential ones first)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
-
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Load additional plugins (load after oh-my-zsh for better performance)
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# pnpm
-export PNPM_HOME="/Users/art3mis/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-#PSQL
-export PATH="/Applications/Postgres.app/Contents/Versions/16/bin:$PATH"
-
-for file in ~/.{path,exports,aliases,functions,extra,zshenv}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraformexport PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export LLVM_HOME="$(brew --prefix llvm)"
+# Development environment configurations
+export JAVA_HOME="$BREW_PREFIX/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export LLVM_HOME="$LLVM_PREFIX"
 export LIBCLANG_PATH="$LLVM_HOME/lib"
+export CC="$LLVM_PREFIX/bin/clang"
+export CXX="$LLVM_PREFIX/bin/clang++"
 
+# HWLOC configurations
+export LIBHWLOC_INCLUDE_PATH="$HWLOC_PREFIX/include"
+export C_INCLUDE_PATH="$HWLOC_PREFIX/include:$C_INCLUDE_PATH"
+export PKG_CONFIG_PATH="$HWLOC_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
+export CGO_LDFLAGS="-L$HWLOC_PREFIX/lib"
+export CGO_CFLAGS="-I$HWLOC_PREFIX/include"
+export CGO_CPPFLAGS="-I$HWLOC_PREFIX/include"
+
+# NVM configuration (lazy loading)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+function load_nvm() {
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+alias nvm='load_nvm && nvm'
+alias node='load_nvm && node'
+alias npm='load_nvm && npm'
+
+# Source additional configuration files (only if they exist and are readable)
+for file in ~/.{path,exports,aliases,functions,extra}; do
+  [[ -r "$file" ]] && source "$file"
+done
+
+# Load powerlevel10k configuration
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# Terraform completion (lazy loading)
+function terraform() {
+  unfunction "$0"
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C $BREW_PREFIX/bin/terraform terraform
+  $0 "$@"
+}
