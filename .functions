@@ -3,6 +3,30 @@ function mkcd() {
   mkdir -p "$@" && cd "$_";
 }
 
+# Kill process running on specified port
+function killport() {
+  if [ $# -eq 0 ]; then
+    echo "Usage: killport <port_number>"
+    return 1
+  fi
+  
+  local port=$1
+  local pid=$(lsof -t -i:"$port")
+  
+  if [ -z "$pid" ]; then
+    echo "No process found running on port $port"
+    return 1
+  fi
+  
+  echo "Found process(es) using port $port:"
+  lsof -i:"$port" | grep LISTEN
+  
+  echo "Killing process(es)..."
+  kill -9 $pid
+  
+  echo "Process(es) on port $port killed successfully"
+}
+
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
