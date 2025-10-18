@@ -104,5 +104,13 @@ fi
 
 export PATH="/opt/homebrew/Cellar/node/24.4.1/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-source /Users/art3mis/.yb-voyager.rc
 export PATH="$HOME/go/bin:$PATH"
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# Load Git completion
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+autoload -Uz compinit && compinit
+
