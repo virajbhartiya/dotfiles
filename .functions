@@ -66,3 +66,27 @@ function o() {
 function gnb() { 
 	git checkout -b "$1" && git pull origin main; 
 };
+
+# Delete all node_modules directories in current path and subdirectories
+function rmnodemodules() {
+	echo "Searching for node_modules directories..."
+	local count=0
+	
+	# Find all node_modules directories and delete them (excluding nested ones)
+	while IFS= read -r -d '' dir; do
+		# Skip if this node_modules is inside another node_modules directory
+		if [[ "$dir" == *"/node_modules/"* ]]; then
+			continue
+		fi
+		
+		echo "Deleting: $dir"
+		rm -rf "$dir"
+		((count++))
+	done < <(find . -name "node_modules" -type d -print0)
+	
+	if [ $count -eq 0 ]; then
+		echo "No node_modules directories found"
+	else
+		echo "Deleted $count node_modules directory(ies)"
+	fi
+}

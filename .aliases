@@ -72,7 +72,7 @@ alias cserver='git clone https://github.com/virajbhartiya/Server-Boilerplate.git
 alias sudo='sudo '
 
 # get macOS software updates
-alias update='sudo softwareupdate -i -a; brew update && brew upgrade && brew cleanup; sudo npm install -g npm; sudo npm update -g'
+alias update='sudo softwareupdate -i -a; brew update && brew upgrade && brew cleanup; sudo npm install -g npm; sudo npm update -g && flutter pub upgrade'
 
 # IP addresses
 alias ip="curl -s ifconfig.me"  # Fetch public IP
@@ -99,3 +99,9 @@ alias h='history'
 alias ccd='pwd | pbcopy' # Copy the current directory to the clipboard
 alias c.='cursor .'
 alias c='cursor'
+
+alias zed="open -a /Applications/Zed.app -n"
+
+
+# temp
+alias pdpd='docker run -it --mount type=bind,src=$PWD/pdp-data,dst=/data ghcr.io/lesnyrumcajs/pdptool:edge'

@@ -44,6 +44,7 @@ path=(
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # Load oh-my-zsh
+autoload -Uz compinit && compinit -i # suppresses the warning
 source $ZSH/oh-my-zsh.sh
 
 # Load additional plugins (load after oh-my-zsh for better performance)
@@ -67,13 +68,6 @@ export CGO_CPPFLAGS="-I$HWLOC_PREFIX/include"
 
 # NVM configuration (lazy loading)
 export NVM_DIR="$HOME/.nvm"
-function load_nvm() {
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-}
-alias nvm='load_nvm && nvm'
-alias node='load_nvm && node'
-alias npm='load_nvm && npm'
 
 # Source additional configuration files (only if they exist and are readable)
 for file in ~/.{path,exports,aliases,functions,extra}; do
@@ -90,3 +84,25 @@ function terraform() {
   complete -o nospace -C $BREW_PREFIX/bin/terraform terraform
   $0 "$@"
 }
+
+# NVM Configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$PATH:/Users/art3mis/go/bin"
+
+# THIS IS TO MAKE CURSOR WORK WITH POWERLEVEL10K
+# # 🚫 Block Cursor from injecting shell integration early
+if [[ "$TERM_PROGRAM" == "vscode" || "$TERM_PROGRAM" == "Cursor" ]]; then
+  export VSCODE_SHELL_INTEGRATION=0
+  return
+fi
+
+
+export PATH="/opt/homebrew/Cellar/node/24.4.1/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+source /Users/art3mis/.yb-voyager.rc
+export PATH="$HOME/go/bin:$PATH"
