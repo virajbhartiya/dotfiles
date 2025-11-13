@@ -18,7 +18,7 @@ alias gpu='git push -u origin'
 alias gl='git log --oneline --graph --decorate'
 alias gst='git stash'
 alias gsl='git stash list'
-alias gsp='git stash pop'
+alias gpop='git stash pop'
 alias gup='git add . && git commit --amend --no-edit && git push --force-with-lease'
 alias guc='git reset --soft HEAD~'
 

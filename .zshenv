@@ -19,3 +19,5 @@ export CPPFLAGS="-I/usr/local/opt/hwloc/include"
 # Other flags
 # export CGO_LDFLAGS="-L/usr/local/lib"
 # export PATH=$PATH:~/.cargo/bin/
+. "$HOME/.cargo/env"
+export PATH="/Users/art3mis/opt/flutter/bin:$PATH"
