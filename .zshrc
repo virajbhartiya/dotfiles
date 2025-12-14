@@ -114,3 +114,13 @@ zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 
+
+# Added by Antigravity
+export PATH="/Users/art3mis/.antigravity/antigravity/bin:$PATH"
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JAVA_HOME="$(brew --prefix openjdk@17)/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH="$HOME/.daml/bin:$PATH"
+export PATH="$HOME/.dpm/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
